@@ -1,4 +1,4 @@
-# Breakpoints
+# Breakpoints and deletions
 Learn how to make breakpoints plot using BED files.
 BED files can come to you in two ways:
 
