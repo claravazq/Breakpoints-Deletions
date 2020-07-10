@@ -11,7 +11,7 @@ tab<-separate(tab, chr, into=c("chro", "begin"), sep="[\\:]")%>%
   separate(begin, into=c("end", "begin"), sep = "[\\-]")%>%
   separate(begin, into=c("begin", "X"), sep = "[\\s]")%>%
   select(sample, begin, end)
-  #Choose the different samples found in your file and separate them to gather them 
+  #Choose the different samples found in your file and separate them to gather them#Example below: 
 tabB<-filter(tab, sample=="BRCA1")%>%select(begin, end)%>%gather()%>%mutate("sample"=c("BRCA1"))%>%group_by(sample, key, value)%>%summarise(n=n())
 tabL<-filter(tab, sample=="Lig4")%>%select(begin, end)%>%gather()%>%mutate("sample"=c("Lig4"))%>%group_by(sample, key, value)%>%summarise(n=n())
 tadA<-filter(tab, sample=="AID")%>%select(begin, end)%>%gather()%>%mutate("sample"=c("AID"))%>%group_by(sample, key, value)%>%summarise(n=n())
@@ -38,7 +38,7 @@ df<- read.table("19006_MG_act_results_sorted.bed",header = F, sep="\t",stringsAs
          blocks=V10,
          blocklength=V11,
          blockS=V12)
-          ##only chr14 in IgH locus##
+          ##only chr14 in IgH locus##To catch only the antibody locus:
 tabl<-separate(df, blocklength, into=c("L1", "L2","L3", "L4", "L5", "L6"), sep="[\\,]")%>%
   separate(blockS, into=c("S1", "S2","S3", "S4", "S5", "S6"), sep = "[\\,]")%>%
   arrange(desc(S6))%>%filter(chr=="chr14")
@@ -67,6 +67,7 @@ demol<-select(tabl, chr, read, B1, B2, B3, B4, B5, B6, numb, ymin, donor)%>% gat
 tablal<-separate(demol, coor, into=c("coor1", "coor2"), sep="[\\-]")%>%mutate("ymax"=ymin+2)%>%arrange(numb)
 
 ##Plots##
+ #Information for feautures of the plot# 
   #Switch coordinates##hg38
 Sm<-c(105856987,105860436)
 Sg3<-c(105772941,105774642)
